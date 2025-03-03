@@ -47,7 +47,7 @@ public class CloudflareController {
     @PostConstruct
     public void init() {
         if (AUTH.isEmpty() || ACCOUNT_ID.isEmpty() || TUNNEL_ID.isEmpty() || API_TOKEN.isEmpty() || ZONE_ID.isEmpty()) {
-            throw new IllegalStateException("Cloudflare 配置未正确设置，请检查环境变量");
+            throw new IllegalStateException("Cloudflare 配置未正确设置，请检查环境变量123");
         }
         API_URL = "https://api.cloudflare.com/client/v4/accounts/" + ACCOUNT_ID + "/cfd_tunnel/" + TUNNEL_ID + "/configurations";
     }
