@@ -1,4 +1,7 @@
 ---
+title: Cloudflare Tunnel Manager
+description: A Spring Boot application for managing Cloudflare Tunnel public hostnames
+---
 
 # Cloudflare Tunnel Manager
 
@@ -21,23 +24,21 @@
 - **容器化**：Docker
 - **CI/CD**：GitHub Actions
 
----
-
 ## 快速开始
 
 ### 前提条件
-- **Java**：17 或更高版本
-- **Maven**：3.6 或更高版本
-- **Docker**：可选，用于容器化部署
-- **Cloudflare 账户**：需要 API Token、Account ID、Tunnel ID 和 Zone ID
+- Java：17 或更高版本
+- Maven：3.6 或更高版本
+- Docker：可选，用于容器化部署
+- Cloudflare 账户：需要 API Token、Account ID、Tunnel ID 和 Zone ID
 
 ### 安装与运行（本地）
 
-1. **克隆项目**
-   ```bash
-   git clone <your-repository-url>
-   cd cloudflare-tunnel-manager
-   ```
+克隆项目
+```bash
+git clone <your-repository-url>
+cd cloudflare-tunnel-manager
+```
 
 2. **配置环境**
    编辑 `src/main/resources/application.yml`：
