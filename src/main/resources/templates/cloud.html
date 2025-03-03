@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>管理 Cloudflare Tunnel 公共主机名</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="icon" type="image/x-icon" href="https://www.cloudflare.com/favicon.ico">
 </head>
 
 <style>
@@ -13,9 +14,10 @@
         --secondary-color: #2c7cb0;
         --success-color: #4caf50;
         --danger-color: #f44336;
-        --text-color: #333;
-        --light-bg: #f9f9f9;
-        --card-shadow: 0 8px 30px rgba(0, 0, 0, 0.12);
+        --text-color: #2c3e50;
+        --light-bg: #e0e5ec;
+        --card-shadow: 8px 8px 16px #c1c7d0, -8px -8px 16px #ffffff;
+        --inner-shadow: inset 3px 3px 6px #c1c7d0, inset -3px -3px 6px #ffffff;
         --transition-speed: 0.3s;
     }
 
@@ -26,42 +28,32 @@
     }
 
     body {
-        font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
         background-color: var(--light-bg);
         color: var(--text-color);
         line-height: 1.6;
-        padding: 0;
-        margin: 0;
+        padding: 20px;
         min-height: 100vh;
-        display: flex;
-        justify-content: center;
-        align-items: center;
     }
 
     .container {
         width: 90%;
-        max-width: 900px;
+        max-width: 1000px;
         margin: 40px auto;
-        background: #fff;
-        border-radius: 12px;
-        box-shadow: var(--card-shadow);
+        background: var(--light-bg);
+        border-radius: 30px;
+        box-shadow: 6px 6px 12px #c1c7d0, -6px -6px 12px #ffffff;
         overflow: hidden;
-        transform: translateY(0);
-        transition: transform var(--transition-speed), box-shadow var(--transition-speed);
-    }
-
-    .container:hover {
-        transform: translateY(-5px);
-        box-shadow: 0 12px 40px rgba(0, 0, 0, 0.2);
+        padding: 0;
     }
 
     .header {
         background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
         color: white;
-        padding: 25px 30px;
+        padding: 30px;
         text-align: center;
         position: relative;
-        overflow: hidden;
+        margin-bottom: 30px;
     }
 
     .header::before {
@@ -90,109 +82,86 @@
 
     .section {
         margin-bottom: 40px;
-        animation: slideUp 0.5s ease-out;
+        padding: 30px;
+        border-radius: 20px;
+        background: var(--light-bg);
+        box-shadow: 4px 4px 8px #c1c7d0, -4px -4px 8px #ffffff;
     }
 
     .section-title {
+        color: var(--text-color);
         font-size: 1.5rem;
-        color: var(--primary-color);
         margin-bottom: 20px;
-        padding-bottom: 10px;
-        border-bottom: 2px solid #f0f0f0;
-        position: relative;
-    }
-
-    .section-title::after {
-        content: '';
-        position: absolute;
-        bottom: -2px;
-        left: 0;
-        width: 60px;
-        height: 2px;
-        background-color: var(--primary-color);
-        transition: width var(--transition-speed);
-    }
-
-    .section:hover .section-title::after {
-        width: 120px;
+        font-weight: 600;
     }
 
     .form-group {
-        margin-bottom: 20px;
+        margin-bottom: 25px;
     }
 
     label {
         display: block;
-        margin-bottom: 8px;
-        color: #555;
+        margin-bottom: 10px;
+        color: var(--text-color);
         font-weight: 500;
     }
 
     textarea, input[type="text"], input[type="password"] {
         width: 100%;
-        padding: 12px 15px;
-        border: 1px solid #e0e0e0;
-        border-radius: 8px;
+        padding: 15px;
+        border: none;
+        border-radius: 15px;
+        background: var(--light-bg);
+        box-shadow: inset 2px 2px 4px #c1c7d0, inset -2px -2px 4px #ffffff;
+        color: var(--text-color);
         font-size: 1rem;
-        transition: border-color var(--transition-speed), box-shadow var(--transition-speed);
-        background-color: #f9f9f9;
+        transition: all var(--transition-speed);
     }
 
     textarea:focus, input[type="text"]:focus, input[type="password"]:focus {
         outline: none;
-        border-color: var(--primary-color);
-        box-shadow: 0 0 0 3px rgba(246, 130, 31, 0.2);
-        background-color: #fff;
+        box-shadow: inset 3px 3px 6px #c1c7d0, inset -3px -3px 6px #ffffff;
     }
 
     button {
-        padding: 12px 20px;
-        background-color: var(--primary-color);
-        color: white;
+        padding: 15px 25px;
+        background: var(--light-bg);
+        color: var(--text-color);
         border: none;
-        border-radius: 8px;
+        border-radius: 15px;
         cursor: pointer;
         font-size: 1rem;
-        font-weight: 500;
-        transition: background-color var(--transition-speed), transform var(--transition-speed);
+        font-weight: 600;
+        transition: all var(--transition-speed);
+        box-shadow: 4px 4px 8px #c1c7d0, -4px -4px 8px #ffffff;
         display: inline-flex;
         align-items: center;
         justify-content: center;
-        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        gap: 10px;
     }
 
     button:hover {
-        background-color: #e67012;
-        transform: translateY(-2px);
-        box-shadow: 0 6px 8px rgba(0, 0, 0, 0.15);
+        transform: translateY(-1px);
+        box-shadow: 6px 6px 12px #c1c7d0, -6px -6px 12px #ffffff;
     }
 
     button:active {
         transform: translateY(0);
-        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-    }
-
-    button i {
-        margin-right: 8px;
+        box-shadow: var(--inner-shadow);
     }
 
     .submit-btn {
         width: 100%;
+        background: linear-gradient(145deg, #f6821f, #e67012);
+        color: white;
     }
 
     .result {
+        padding: 20px;
+        border-radius: 15px;
         margin-top: 20px;
-        padding: 15px;
-        border-radius: 8px;
-        font-weight: 500;
-        opacity: 0;
-        transform: translateY(10px);
-        transition: opacity var(--transition-speed), transform var(--transition-speed);
-    }
-
-    .result.show {
-        opacity: 1;
-        transform: translateY(0);
+        background: var(--light-bg);
+        box-shadow: var(--inner-shadow);
     }
 
     .success {
@@ -214,24 +183,24 @@
     #hostnameList ul {
         list-style: none;
         padding: 0;
+        display: grid;
+        gap: 20px;
     }
 
     #hostnameList li {
+        padding: 20px;
+        background: var(--light-bg);
+        border-radius: 20px;
+        box-shadow: 4px 4px 8px #c1c7d0, -4px -4px 8px #ffffff;
         display: flex;
         justify-content: space-between;
         align-items: center;
-        padding: 15px;
-        margin-bottom: 10px;
-        background-color: #fff;
-        border-radius: 8px;
-        box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
-        transition: transform var(--transition-speed), box-shadow var(--transition-speed);
-        animation: fadeIn 0.5s ease-out;
+        transition: all var(--transition-speed);
     }
 
     #hostnameList li:hover {
-        transform: translateY(-3px);
-        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+        transform: translateY(-2px);
+        box-shadow: 6px 6px 12px #c1c7d0, -6px -6px 12px #ffffff;
     }
 
     .hostname-info {
@@ -240,7 +209,9 @@
 
     .hostname {
         font-weight: 600;
-        color: var(--secondary-color);
+        color: var(--text-color);
+        font-size: 1.1rem;
+        margin-bottom: 5px;
     }
 
     .service {
@@ -249,20 +220,19 @@
     }
 
     .delete-btn {
-        background-color: var(--danger-color);
-        padding: 8px 12px;
-        margin-left: 15px;
-    }
-
-    .delete-btn:hover {
-        background-color: #d32f2f;
+        background: linear-gradient(145deg, #f44336, #d32f2f);
+        color: white;
+        padding: 10px 20px;
     }
 
     .empty-list {
         text-align: center;
-        padding: 30px;
-        color: #888;
+        padding: 40px;
+        color: #666;
         font-style: italic;
+        background: var(--light-bg);
+        border-radius: 20px;
+        box-shadow: var(--inner-shadow);
     }
 
     .loading {
@@ -271,12 +241,12 @@
     }
 
     .loading-spinner {
-        display: inline-block;
-        width: 40px;
-        height: 40px;
-        border: 4px solid rgba(0, 0, 0, 0.1);
+        width: 50px;
+        height: 50px;
+        border: 4px solid var(--light-bg);
         border-radius: 50%;
         border-top-color: var(--primary-color);
+        box-shadow: var(--card-shadow);
         animation: spin 1s linear infinite;
     }
 
@@ -287,23 +257,22 @@
         left: 0;
         right: 0;
         bottom: 0;
-        background-color: rgba(0, 0, 0, 0.8);
+        background-color: rgba(224, 229, 236, 0.9);
+        backdrop-filter: blur(10px);
         display: flex;
         justify-content: center;
         align-items: center;
         z-index: 9999;
-        backdrop-filter: blur(5px);
         animation: fadeIn 0.3s ease-out;
     }
 
     .auth-card {
-        background: white;
-        padding: 30px;
-        border-radius: 12px;
-        width: 90%;
+        background: var(--light-bg);
+        border-radius: 30px;
+        box-shadow: 6px 6px 12px #c1c7d0, -6px -6px 12px #ffffff;
+        padding: 40px;
         max-width: 400px;
-        box-shadow: 0 15px 50px rgba(0, 0, 0, 0.3);
-        animation: scaleIn 0.4s ease-out;
+        width: 90%;
     }
 
     .auth-header {
@@ -334,18 +303,19 @@
 
     .logout-btn {
         position: absolute;
-        top: 15px;
-        right: 15px;
-        background-color: transparent;
-        color: white;
-        box-shadow: none;
-        padding: 5px 10px;
-        font-size: 0.9rem;
+        top: 20px;
+        right: 20px;
+        background: rgba(255, 255, 255, 0.2);
+        backdrop-filter: blur(5px);
         border: 1px solid rgba(255, 255, 255, 0.3);
+        color: white;
+        padding: 8px 15px;
+        border-radius: 15px;
+        font-size: 0.9rem;
     }
 
     .logout-btn:hover {
-        background-color: rgba(255, 255, 255, 0.1);
+        background: rgba(255, 255, 255, 0.3);
         transform: none;
         box-shadow: none;
     }
@@ -382,28 +352,26 @@
     }
 
     @media (max-width: 768px) {
+        body {
+            padding: 10px;
+        }
+
         .container {
-            width: 95%;
-            margin: 20px auto;
+            width: 100%;
+            margin: 20px 0;
         }
-        
-        .header h1 {
-            font-size: 1.8rem;
-        }
-        
-        .content {
+
+        .section {
             padding: 20px;
         }
-        
+
         #hostnameList li {
             flex-direction: column;
-            align-items: flex-start;
+            gap: 15px;
         }
-        
+
         .delete-btn {
-            margin-left: 0;
-            margin-top: 10px;
-            align-self: flex-end;
+            width: 100%;
         }
     }
 </style>
