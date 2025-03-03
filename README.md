@@ -1,4 +1,3 @@
-
 ---
 
 # Cloudflare Tunnel Manager
@@ -13,12 +12,14 @@
 - **删除主机名**：移除指定主机名并同步删除 DNS 记录。
 - **DNS 管理**：自动为新增主机名创建 CNAME 记录，删除时移除对应记录。
 - **Docker 支持**：提供 Dockerfile 和 Docker Compose 配置，便于容器化部署。
+- **CI/CD 支持**：集成 GitHub Actions 自动构建和发布 Docker 镜像。
 
 ### 技术栈
 - **后端**：Spring Boot 3.x, OkHttp3, FastJSON2
 - **前端**：Thymeleaf, HTML/CSS/JavaScript
 - **依赖**：Maven, Hutool, Lombok
 - **容器化**：Docker
+- **CI/CD**：GitHub Actions
 
 ---
 
@@ -64,6 +65,59 @@
 
 5. **访问**
    打开浏览器，访问 `http://localhost:9995`。
+
+---
+
+## GitHub Actions CI/CD
+
+本项目使用 GitHub Actions 实现持续集成和持续部署。每当代码推送到 `main` 分支时，会自动构建项目并发布 Docker 镜像。
+
+### 工作流程
+
+工作流程包含两个主要任务：
+
+1. **构建 (build)**：
+   - 检出代码
+   - 设置 JDK 17
+   - 使用 Maven 构建项目
+   - 上传构建的 JAR 文件作为构件
+
+2. **Docker (docker)**：
+   - 下载构建的 JAR 文件
+   - 登录到 Docker Hub
+   - 构建 Docker 镜像
+   - 推送镜像到 Docker Hub
+
+### 设置步骤
+
+要使用此工作流，您需要在 GitHub 仓库中设置以下 Secrets：
+
+1. **DOCKER_HUB_USERNAME**：您的 Docker Hub 用户名
+2. **DOCKER_HUB_TOKEN**：您的 Docker Hub 访问令牌（不是密码）
+
+#### 如何设置 GitHub Secrets
+
+1. 在您的 GitHub 仓库中，点击 "Settings"
+2. 在左侧菜单中，点击 "Secrets and variables" > "Actions"
+3. 点击 "New repository secret"
+4. 添加 `DOCKER_HUB_USERNAME` 和 `DOCKER_HUB_TOKEN`
+
+#### 如何获取 Docker Hub 访问令牌
+
+1. 登录到 [Docker Hub](https://hub.docker.com/)
+2. 点击您的用户名，然后选择 "Account Settings"
+3. 在左侧菜单中，点击 "Security"
+4. 点击 "New Access Token"
+5. 输入令牌描述，选择适当的权限
+6. 点击 "Generate"
+7. 复制生成的令牌（这是您唯一能看到它的机会）
+
+### 手动触发工作流
+
+1. 在 GitHub 仓库中，点击 "Actions" 标签
+2. 在左侧列表中选择 "Build and Deploy" 工作流
+3. 点击 "Run workflow" 按钮
+4. 选择分支，然后点击 "Run workflow"
 
 ---
 
@@ -169,13 +223,13 @@ docker run -d \
 
 ### 添加主机名
 - 在页面输入子域列表（每行一个，例如 `sub1.example.com`）和服务 URL（例如 `http://localhost:8080`）。
-- 点击“提交”，主机名和 DNS CNAME 记录将自动添加。
+- 点击"提交"，主机名和 DNS CNAME 记录将自动添加。
 
 ### 查看主机名
 - 页面加载时自动显示当前主机名列表。
 
 ### 删除主机名
-- 在列表中点击“删除”按钮，主机名及其 DNS 记录将被移除。
+- 在列表中点击"删除"按钮，主机名及其 DNS 记录将被移除。
 
 ---
 
