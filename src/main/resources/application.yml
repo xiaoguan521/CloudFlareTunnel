@@ -1,8 +1,8 @@
 server:
   port: ${SERVER_PORT:9995}  # 默认端口 9995，可通过环境变量覆盖
 cloudflare:
-  auth: ${CLOUDFLARE_AUTH:}
-  account-id: ${CLOUDFLARE_ACCOUNT_ID:}
-  tunnel-id: ${CLOUDFLARE_TUNNEL_ID:}
-  api-token: ${CLOUDFLARE_API_TOKEN:}
-  zone-id: ${CLOUDFLARE_ZONE_ID:}
+  auth: "12345"
+  account-id: "7740c2ad8f9d3eb2fcff066422ff03c9"
+  tunnel-id: "cfb8245e-5eed-42ab-9a5c-a8149e1b5345"
+  api-token: "YMSHK1XO0nUQ-W6aX2Qp7SdxznK30FjNm7rX17X6"
+  zone-id: "e305b455c83aad39c0229d993cde5678"
